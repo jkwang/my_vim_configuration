@@ -96,7 +96,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
 " Sets how many lines of history VIM has to remember
-set history=300
+set history=1000
 
 " Enable filetype plugin
 filetype plugin on
@@ -107,8 +107,8 @@ set autoread
 
 " With a map leader it's possible to do extra key combinations
 " like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
+"let mapleader = ","
+"let g:mapleader = ","
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -175,7 +175,7 @@ if MySys() == "mac"
 elseif MySys() == "windows"
   au GUIEnter * simalt ~x
   set gfn=Consolas:h11
-elseif MySys() == "linux"
+elseif MySys() == "unix"
   set gfn=Monospace\ 10
   set shell=/bin/bash
 endif
@@ -238,14 +238,15 @@ if has("gui_running")
   set guioptions-=L  "left side bar
   set guioptions-=r  "right side bar
   set guioptions-=R  "right side bar
-  set background=dark
   set t_Co=256
-  colorscheme desert
+  set background=dark
+  colorscheme jellybeans
   set nu
 else
-  colorscheme zellner
+  set t_Co=256
+  colorscheme jellybeans
   set background=dark
-  set nonu
+  set nu
 endif
 
 try
@@ -365,13 +366,13 @@ endfunc
 
 func! DeleteTillSlash()
   let g:cmd = getcmdline()
-  if MySys() == "linux" || MySys() == "mac"
+  if MySys() == "unix" || MySys() == "mac"
     let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*", "\\1", "")
   else
     let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\]\\).*", "\\1", "")
   endif
   if g:cmd == g:cmd_edited
-    if MySys() == "linux" || MySys() == "mac"
+    if MySys() == "unix" || MySys() == "mac"
       let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*/", "\\1", "")
     else
       let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\\]\\).*\[\\\\\]", "\\1", "")
@@ -620,10 +621,9 @@ endfunction
 """"""""""""""""""""""""""""""
 try
     call fuf#defineLaunchCommand('FufCWD', 'file', 'fnamemodify(getcwd(), ''%:p:h'')')
-    map <leader>t :FufCWD **/<CR>
+    map <leader>F :FufCWD **/<CR>
 catch
 endtry
-
 
 """"""""""""""""""""""""""""""
 " => Vim grep
