@@ -29,7 +29,7 @@ ruby << RUBY
     if ENV['OS'] && ENV['OS'].downcase =~ /windows/
       require "#{ENV['HOME']}\\vimfiles\\ruby\\fuzzy_file_finder"
     else
-      require "#{ENV['HOME']}/.vim/ruby/fuzzy_file_finder"
+      require "#{ENV['HOME']}/.vim_runtime/ruby/fuzzy_file_finder"
     end
   rescue LoadError
     begin
