@@ -175,7 +175,7 @@ if MySys() == "mac"
 elseif MySys() == "windows"
   au GUIEnter * simalt ~x
   set gfn=Consolas:h11
-elseif MySys() == "unix"
+elseif MySys() == "linux"
   set gfn=Monospace\ 10
   set shell=/bin/bash
 endif
@@ -210,7 +210,7 @@ if has("multi_byte")
     "set termencoding=euc-jp
     "set fileencoding=euc-jp
   elseif $OS=="Windows_NT" 
-		if MySys()=="unix"
+		if MySys()=="linux"
       set encoding=chinese
 	  endif
   endif
@@ -370,13 +370,13 @@ endfunc
 
 func! DeleteTillSlash()
   let g:cmd = getcmdline()
-  if MySys() == "unix" || MySys() == "mac"
+  if MySys() == "linux" || MySys() == "mac"
     let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*", "\\1", "")
   else
     let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\]\\).*", "\\1", "")
   endif
   if g:cmd == g:cmd_edited
-    if MySys() == "unix" || MySys() == "mac"
+    if MySys() == "linux" || MySys() == "mac"
       let g:cmd_edited = substitute(g:cmd, "\\(.*\[/\]\\).*/", "\\1", "")
     else
       let g:cmd_edited = substitute(g:cmd, "\\(.*\[\\\\\]\\).*\[\\\\\]", "\\1", "")
