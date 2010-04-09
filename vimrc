@@ -88,6 +88,7 @@ if filereadable(expand("~/.vim_runtime/plugin/fencview.vim"))
 	let g:fencview_autodetect = 1
 	let g:fencview_checklines = 10
 endif
+set helplang=cn
 "End J.K Wang added
 
 
