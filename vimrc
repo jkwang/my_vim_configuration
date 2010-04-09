@@ -242,6 +242,10 @@ if has("gui_running")
   set background=dark
   colorscheme jellybeans
   set nu
+elseif ($TERM == 'cygwin')
+  colorscheme desert
+  set background=dark
+  set nu
 else
   set t_Co=256
   colorscheme jellybeans
